@@ -76,3 +76,4 @@ rr <- function(s1=NULL,s2=NULL,ts1=NULL,ts2=NULL){
 }
 #test sample set
 rr(142, 251, 8900, 8900)
+  ##Please improve rr script.
