@@ -1,5 +1,6 @@
-TestRepo1
+Relative Risk Repo
 ========
 
-###First testing of git.
+###Index of statistic calculated by the Rscript
+
 
