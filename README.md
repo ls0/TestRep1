@@ -2,8 +2,8 @@ Relative Risk Repo
 ========
 
 ###Index of statistic calculated by the Rscript
-*Probability (p-hat)   
-*Risk Difference (RD)    
+1.  Probability (p-hat)   
+2.  Risk Difference (RD)    
 
 
 
