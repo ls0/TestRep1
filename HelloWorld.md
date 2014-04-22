@@ -22,3 +22,36 @@ File Name                       | Number of Columns | Number of Rows
 3.  Anguita, D, Ghio, A, Oneto, L, Parra, X. and Reyes-Ortiz, J. L . Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. 4th International Workshop of Ambient Assited Living, IWAAL 2012, Vitoria-Gasteiz, Spain, December 3-5, 2012. Proceedings. Lecture Notes in Computer Science 2012, pp 216-223.
 4.  Kwapisz, J. R. Weiss, G. M., and Moore, S. A. (2010). Activity Recognition using Cell Phone Accelerometers. ACM SIGKDD Explorations Newsletter archive. Vol. 12, 2, 74-82   
 5.  <https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip >
+  
+Run_analysis R Markdown
+========================================================
+##Data    
+Data was obtained from the following site: <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones> 
+###Library used during the analysis
+```{r}
+library(plyr)
+library(dplyr)
+library(reshape2)
+library(data.table)
+library(car)
+```
+
+###Read Samsung phone test data sets from the R directory.
+```{r}
+xTest <- read.table("./UCI HAR Dataset/test/X_test.txt")
+subjectTest <- read.table("./UCI HAR Dataset/test/subject_test.txt")
+activityTest <- read.table("./UCI HAR Dataset/test/y_test.txt")
+cNames <- read.table("./UCI HAR Dataset/features.txt")
+```
+### transpose column names (also called features) from y- to x-asis
+```{r}
+names <- t(cNames)
+```
+## returns column names and selects row 2 with column names only
+```
+
+
+
+
+
+
