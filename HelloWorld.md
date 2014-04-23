@@ -152,7 +152,8 @@ meanVariables <- sapply(dfVariables ,function(x) substitute(mean(x), list(x=as.n
 summaryTable1 <- do.call(summarise, c(list(.data=df), meanVariables)) 
 write.table(summaryTable1, file = "summaryTable1.txt")
 ```
-##samsungStatistics2: a tidy data frame with 68 variables and 10299 rows.
+##samsungStatistics2:
+a tidy data frame with 68 variables and 10299 rows.
 #####Prepare another table with matched statistics.  This removes means that are not matched to standard deviations.
 ```{r}
 temp <- select(samsungDataAll, -296, -297, -298, -375, -376, -377, -454, -455, -456, -515, -528, -541, -554)
