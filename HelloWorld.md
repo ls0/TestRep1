@@ -17,20 +17,20 @@ File Name                     | Number of Columns        | Number of Rows
  __summaryTable2*__           |       68                  |    180    
 __*These two files have matched means and standard deviations and are the most likely needed for the project, else the files with 81 columns and 13 additional means that are not matched with standard deviations can be used.__   
 
-## R-script Function and Usage
+
 ##References:
 
 1.  Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012.
 2.  Anguita, D, Ghio, A, Oneto, L, Parra, X. and Reyes-Ortiz, J. L . A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013. 
 3.  Anguita, D, Ghio, A, Oneto, L, Parra, X. and Reyes-Ortiz, J. L . Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. 4th International Workshop of Ambient Assited Living, IWAAL 2012, Vitoria-Gasteiz, Spain, December 3-5, 2012. Proceedings. Lecture Notes in Computer Science 2012, pp 216-223.
 4.  Kwapisz, J. R. Weiss, G. M., and Moore, S. A. (2010). Activity Recognition using Cell Phone Accelerometers. ACM SIGKDD Explorations Newsletter archive. Vol. 12, 2, 74-82   
-5.  <https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip >
+5.  <https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>
   
 #Run_analysis R Markdown
-
+### R-script Function and Usage
 ##Data    
 Data was obtained from the following site: <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones> 
-###Library used during the analysis.
+#####Libraries used during the analysis.
 ```{r}
 library(plyr)
 library(dplyr)
@@ -39,7 +39,7 @@ library(data.table)
 library(car)
 ```
 ##Test set
-#####Read Samsung phone test data sets from the R directory and relable.    
+Read Samsung phone test data sets from the R directory and relable.    
 The UCI HAR Data set was down loaded and saved to the R working directory.  Four data sets were used.  For the purpose of this project the inertial data was not used.  Three of the data sets are unique to the 9 test subjects.  The feature data set has the motion vector column names and is common to both test and training sets. 
 ```{r}
 xTest <- read.table("./UCI HAR Dataset/test/X_test.txt")
@@ -47,102 +47,104 @@ subjectTest <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 activityTest <- read.table("./UCI HAR Dataset/test/y_test.txt")
 cNames <- read.table("./UCI HAR Dataset/features.txt")
 ```
-###Transpose column names (also called features) from y- to x-asis.
+Transpose column names (also called features) from y- to x-asis.
 ```{r}
 names <- t(cNames)
 ```
-###Returns column names and selects row 2 with column names only.
+Returns column names and selects row 2 with column names only.
 ```{r}
 names1 <- names[2,]
 ```
-###Returns new test data frame with proper names.
+Returns new test data frame with proper names.
 ```{r}
 names(xTest) <- paste0(names1)
 ```
-###Unlist the activity and coerce into numeric.  Activity levels are changed to descriptive activity names. 
+Unlist the activity and coerce into numeric.  Activity levels are changed to descriptive activity names. 
 ```{r}
 activityTest1 <- as.numeric(unlist(activityTest))
 Activity <- recode(activityTest1, "c(1) = 'Walking'; c(2) = 'Walking Up'; c(3) = 'Walking Down'; c(4) = 'Sitting'; c(5) = 'Standing'; c(6) = 'Laying'")
 ```
-###Add "Activity" to left side of data table.
+Add "Activity" to left side of data table.
 ```{r}
 dataFrame <- cbind(Activity, xTest)
 ```
-###The meaningless "V1" label is replaced with "Subject" label.  
+The meaningless "V1" label is replaced with "Subject" label.  
 ```{r}
 subjectTest1 <- rename(subjectTest, c("V1" = "Subject"))
 ```
-###Returns the complete test table with subject numbers added to the furthest most left side.
+Returns the complete test table with subject numbers added to the furthest most left side.
 ```{r}
 dataFrameTest <- cbind(subjectTest1, dataFrame)
 ```
-###Save tidy dataFrameTest to R directory
+Save tidy dataFrameTest to R directory
 ```{r}
 write.table(dataFrameTest, file = "dataFrameTest.txt")
 ```
-##The same steps are used to obtain a tidy training data set.
+##Training set
+The same steps are used to obtain a tidy training data set.
 ```{r}
 xTrain <- read.table("./UCI HAR Dataset/train/X_train.txt")
 subjectTrain <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 activityTrain <- read.table("./UCI HAR Dataset/train/y_train.txt")
 cNames <- read.table("./UCI HAR Dataset/features.txt")
 ```
-####Transpose features from y- to x-asis.
+Transpose features from y- to x-asis.
 ```{r}
 names <- t(cNames)
 ```
-####Returns column names and selects row 2 with names only.
+Returns column names and selects row 2 with names only.
 ```{r}
 names1 <- names[2,]
 ```
-####Returns new training data frame with correct motion vector names.
+Returns new training data frame with correct motion vector names.
 ```{r}
 names(xTrain) <- paste0(names1)
 head(xTrain, 2)
 dim(xTrain)
 ```
-####Unlist the activity and coerce into numeric.  Activity levels are changed to descriptive activity names.
+Unlist the activity and coerce into numeric.  Activity levels are changed to descriptive activity names.
 ```{r}
 activityTrain1 <- as.numeric(unlist(activityTrain))
 Activity <- recode(activityTrain1, "c(1) = 'Walking'; c(2) = 'Walking Up'; c(3) = 'Walking Down'; c(4) = 'Sitting'; c(5) = 'Standing'; c(6) = 'Laying'")
 ```
-####Add "Activity" to left side of data table.
+Add "Activity" to left side of data table.
 ```{r}
 dataFrame <- cbind(Activity, xTrain)
 ```
-####The meaningless "V1" label is replaced with "Subject" label.
+The meaningless "V1" label is replaced with "Subject" label.
 ```{r}
 subjectTrain1 <- rename(subjectTrain, c("V1" = "Subject"))
 ```
-####Returns the complete training data table with subject numbers added to the furthest most left side.
+Returns the complete training data table with subject numbers added to the furthest most left side.
 ```{r}
 dataFrameTrain <- cbind(subjectTrain1, dataFrame)
 ```
-####Save dataFrameTrain to R directory.
+Save dataFrameTrain to R directory.
 ```{r}
 write.table(dataFrameTrain, file = "dataFrameTrain.txt")
 ```
-##Merge (stack) the tidy training and test data sets into a single dataset with the rbind function.
+#####Merge (stack) the tidy training and test data sets into a single dataset with the rbind function.
 ```{r}
 samsungData <- rbind(dataFrameTrain, dataFrameTest)
 ```
-
-###Reorder the the data set by subjects 1-30.  Here the large tidy data frame with 563 columns and 10299 rows is saved.
+##samsungDataAll: a tidy data frame with all subjects, activities and motion vectors. 
+####Reorder the the data set by subjects 1-30.  Here the large tidy data frame with 563 columns and 10299 rows is saved.
 ```{r}
 samsungDataAll <- arrange(samsungData, Subject)
 write.table(samsungDataAll, file = "samsungDataAll.txt")
 ```
-###Select means and std variables.  Save file.
+##samsungStatistics1: a tidy data frame with 81 variables and 10299 rows.
+Select means and std variables.  Save file.
 ```{r}
 samsungStatistics1 <- select(samsungDataAll, Subject, Activity, grep("mean", colnames(samsungDataAll)), grep("std", colnames(samsungDataAll)))
 write.table(samsungStatistics1, file = "samsungStatistics1.txt")
 ```
-###Create a data frame table.  Although this is not a necessary part of the code, inclusion ensures that only the first few rows and all columns are returned upon printing.
+Create a data frame table.  Although this is not a necessary part of the code, inclusion ensures that only the first few rows and all columns are returned upon printing.
 ```{r}
 samsungStatistics1 <- tbl_df(samsungStatistics1)
 ```
-##summarization of data     
-###Data is first grouped by the Subject and Activity variables.  Next, subtract those same two variables, calculate the means and summarize the results.  The original 10299 rows is decreased to 180 rows, with 81 variables comprised of 46 means and 33 standard deviations.
+##summaryTable1: summarization of samsungStatistics1     
+#####Data is first grouped by the Subject and Activity variables.  Next, subtract those same two variables, calculate the means and summarize the results.  The original 10299 rows is decreased to 180 rows, with 81 variables comprised of 46 means and 33 standard deviations.
 ```{r}
 df <-  group_by(samsungStatistics1, Subject, Activity)
 dfVariables <- names(df)[-(1:2)]  
@@ -150,12 +152,14 @@ meanVariables <- sapply(dfVariables ,function(x) substitute(mean(x), list(x=as.n
 summaryTable1 <- do.call(summarise, c(list(.data=df), meanVariables)) 
 write.table(summaryTable1, file = "summaryTable1.txt")
 ```
-###Prepare another table with matched statistics.  This removes means that are not matched to standard deviations.
+##samsungStatistics2: a tidy data frame with 68 variables and 10299 rows.
+#####Prepare another table with matched statistics.  This removes means that are not matched to standard deviations.
 ```{r}
 temp <- select(samsungDataAll, -296, -297, -298, -375, -376, -377, -454, -455, -456, -515, -528, -541, -554)
 samsungStatistics2 <- select(temp, Subject, Activity, grep("mean", colnames(temp)), grep("std", colnames(temp)))
 ```
-###Finally, a matched statistics data set is produced, which has 180 rows and 68 variables and is comprised of 33 means and 33 standard deviations.
+##summaryTable2
+#####Finally, a matched statistics data set is produced, which has 180 rows and 68 variables and is comprised of 33 means and 33 standard deviations.
 ```{r}
 df2 <-  group_by(samsungStatistics2, Subject, Activity)
 dfVariables2 <- names(df2)[-(1:2)]  
