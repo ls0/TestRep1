@@ -34,8 +34,9 @@ Project requirments as [written](https://class.coursera.org/getdata-002/human_gr
 4.  Appropriately labels the data set with descriptive activity names.    
 5.  Creates a second, independent tidy data set with the average of each variable for each activity and each subject.   
 ### R-script Function and Usage
-##Data    
-Data was obtained from the following site: <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones> 
+##Data       
+Data was obtained from the following site: <https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip> 
+The zip file was downloaded, unzipped and saved to the R working directory.  
 #####Libraries used during the analysis.
 ```{r}
 library(plyr)
@@ -45,8 +46,7 @@ library(data.table)
 library(car)
 ```
 ##Test set
-Read Samsung phone test data sets from the R directory and relable.    
-The UCI HAR Data set was down loaded and saved to the R working directory.  Four data sets were used.  For the purpose of this project the inertial data was not used.  Three of the data sets are unique to the 9 test subjects.  The feature data set has the motion vector column names and is common to both test and training sets. 
+Read Samsung phone test data sets from the R directory.  Four data sets were used.  For the purpose of this project the inertial data was not used.  Three of the data sets are unique to the 9 test subjects.  The feature data set has the motion vector column names and is common to both test and training sets. 
 ```{r}
 xTest <- read.table("./UCI HAR Dataset/test/X_test.txt")
 subjectTest <- read.table("./UCI HAR Dataset/test/subject_test.txt")
