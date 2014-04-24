@@ -134,14 +134,14 @@ write.table(dataFrameTrain, file = "dataFrameTrain.txt")
 samsungData <- rbind(dataFrameTrain, dataFrameTest)
 ```
 ##samsungDataAll: a tidy data frame with all subjects, activities and motion vectors.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;######The samsungDataAll fulfills requirments 1 and 3 of project assignment.   
-####Reorder the the data set by subjects 1-30.  Here the large tidy data frame with 563 columns and 10299 rows is saved.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;######The samsungDataAll file fulfills requirments 1 and 3 of project assignment.   
+####Reorder the the data set by subjects 1-30 and save the large tidy data frame with 563 columns and 10299 rows.
 ```{r}
 samsungDataAll <- arrange(samsungData, Subject)
 write.table(samsungDataAll, file = "samsungDataAll.txt")
 ```
 ##samsungStatistics1: a tidy data frame with 81 variables and 10299 rows.
-Select means and std variables.  Save file.
+Select means and std variables and then file is saved.  This produces a data set with 46 mean and 33 standard deviation values.
 ```{r}
 samsungStatistics1 <- select(samsungDataAll, Subject, Activity, grep("mean", colnames(samsungDataAll)), grep("std", colnames(samsungDataAll)))
 write.table(samsungStatistics1, file = "samsungStatistics1.txt")
@@ -150,8 +150,8 @@ Create a data frame table.  Although this is not a necessary part of the code, i
 ```{r}
 samsungStatistics1 <- tbl_df(samsungStatistics1)
 ```
-##summaryTable1: summarization of samsungStatistics1     
-#####Data is first grouped by the Subject and Activity variables.  Next, subtract those same two variables, calculate the means and summarize the results.  The original 10299 rows is decreased to 180 rows, with 81 variables comprised of 46 means and 33 standard deviations.
+##summaryTable1: summarization of samsungStatistics1 with 81 variables and 180 rows.       
+#####Data is first grouped by the Subject and Activity variables.  Next, subtract those same two variables, calculate the means, summarize the results and save the file.  
 ```{r}
 df <-  group_by(samsungStatistics1, Subject, Activity)
 dfVariables <- names(df)[-(1:2)]  
@@ -159,15 +159,14 @@ meanVariables <- sapply(dfVariables ,function(x) substitute(mean(x), list(x=as.n
 summaryTable1 <- do.call(summarise, c(list(.data=df), meanVariables)) 
 write.table(summaryTable1, file = "summaryTable1.txt")
 ```
-##samsungStatistics2:
-a tidy data frame with 68 variables and 10299 rows.
+##samsungStatistics2: a tidy data frame with 68 variables and 10299 rows.
 #####Prepare another table with matched statistics.  This removes means that are not matched to standard deviations.
 ```{r}
 temp <- select(samsungDataAll, -296, -297, -298, -375, -376, -377, -454, -455, -456, -515, -528, -541, -554)
 samsungStatistics2 <- select(temp, Subject, Activity, grep("mean", colnames(temp)), grep("std", colnames(temp)))
 ```
-##summaryTable2
-#####Finally, a matched statistics data set is produced, which has 180 rows and 68 variables and is comprised of 33 means and 33 standard deviations.
+##summaryTable2: summarization of samsungStatistics1 with 68 variables and 180 rows.
+#####Finally, a matched statistics data set is produced, which is comprised of 33 means and 33 standard deviations.
 ```{r}
 df2 <-  group_by(samsungStatistics2, Subject, Activity)
 dfVariables2 <- names(df2)[-(1:2)]  
