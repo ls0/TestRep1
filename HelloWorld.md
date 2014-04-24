@@ -87,7 +87,7 @@ Save tidy dataFrameTest to R directory
 write.table(dataFrameTest, file = "dataFrameTest.txt")
 ```
 ##Training set
-The same steps are used to obtain a tidy training data set.
+The same steps are used to obtain a tidy training data set as were used to obtain a tidy test data set.  In this data set there are 21 subjects.
 ```{r}
 xTrain <- read.table("./UCI HAR Dataset/train/X_train.txt")
 subjectTrain <- read.table("./UCI HAR Dataset/train/subject_train.txt")
@@ -134,7 +134,7 @@ write.table(dataFrameTrain, file = "dataFrameTrain.txt")
 samsungData <- rbind(dataFrameTrain, dataFrameTest)
 ```
 ##samsungDataAll: a tidy data frame with all subjects, activities and motion vectors.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#####This fulfills requirments 1 and 3 of project assignment.   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;######The samsungDataAll fulfills requirments 1 and 3 of project assignment.   
 ####Reorder the the data set by subjects 1-30.  Here the large tidy data frame with 563 columns and 10299 rows is saved.
 ```{r}
 samsungDataAll <- arrange(samsungData, Subject)
