@@ -20,8 +20,8 @@ __*These two files have matched means and standard deviations and are the most l
 
 ##References:
 
-1.  Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012.
-2.  Anguita, D, Ghio, A, Oneto, L, Parra, X. and Reyes-Ortiz, J. L . A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013. 
+1.  [Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012.](http://link.springer.com/chapter/10.1007%2F978-3-642-35395-6_30#page-1)
+2.  [Anguita, D, Ghio, A, Oneto, L, Parra, X. and Reyes-Ortiz, J. L . A Public Domain Dataset for Human Activity Recognition Using Smartphones. 21th European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning, ESANN 2013. Bruges, Belgium 24-26 April 2013.](https://www.elen.ucl.ac.be/Proceedings/esann/esannpdf/es2013-11.pdf )
 3.  Anguita, D, Ghio, A, Oneto, L, Parra, X. and Reyes-Ortiz, J. L . Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. 4th International Workshop of Ambient Assited Living, IWAAL 2012, Vitoria-Gasteiz, Spain, December 3-5, 2012. Proceedings. Lecture Notes in Computer Science 2012, pp 216-223.
 4.  Kwapisz, J. R. Weiss, G. M., and Moore, S. A. (2010). Activity Recognition using Cell Phone Accelerometers. ACM SIGKDD Explorations Newsletter archive. Vol. 12, 2, 74-82   
 5.  <https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>
