@@ -27,6 +27,12 @@ __*These two files have matched means and standard deviations and are the most l
 5.  <https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>
   
 #Run_analysis R Markdown
+Project requirments as [written](https://class.coursera.org/getdata-002/human_grading/view/courses/972080/assessments/3/submissions):    
+1.  Merges the training and the test sets to create one data set.   
+2.  Extracts only the measurements on the mean and standard deviation for each measurement.    
+3.  Uses descriptive activity names to name the activities in the data set.   
+4.  Appropriately labels the data set with descriptive activity names.    
+5.  Creates a second, independent tidy data set with the average of each variable for each activity and each subject.   
 ### R-script Function and Usage
 ##Data    
 Data was obtained from the following site: <http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones> 
@@ -127,7 +133,8 @@ write.table(dataFrameTrain, file = "dataFrameTrain.txt")
 ```{r}
 samsungData <- rbind(dataFrameTrain, dataFrameTest)
 ```
-##samsungDataAll: a tidy data frame with all subjects, activities and motion vectors. 
+##samsungDataAll: a tidy data frame with all subjects, activities and motion vectors.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#####This fulfills requirments 1 and 3 of project assignment.   
 ####Reorder the the data set by subjects 1-30.  Here the large tidy data frame with 563 columns and 10299 rows is saved.
 ```{r}
 samsungDataAll <- arrange(samsungData, Subject)
