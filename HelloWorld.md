@@ -134,7 +134,7 @@ write.table(dataFrameTrain, file = "dataFrameTrain.txt")
 samsungData <- rbind(dataFrameTrain, dataFrameTest)
 ```
 ##samsungDataAll: a tidy data frame with all subjects, activities and motion vectors.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__The samsungDataAll file fulfills requirements 1 and 3 of project assignment.__   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__samsungDataAll fulfills requirements 1 and 3 of project assignment.__   
 ####Reorder the the data set by subjects 1-30 and save the large tidy data frame with 563 columns and 10299 rows.
 ```{r}
 samsungDataAll <- arrange(samsungData, Subject)
@@ -163,14 +163,14 @@ write.table(summaryTable1, file = "summaryTable1.txt")
 ```
 ##samsungStatistics2: a tidy data frame with 68 variables and 10299 rows.
 #####Prepare another table with matched statistics.  This removes means that are not matched to standard deviations.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__if samsungStatistics1 does not fulfill requirements 2-4 of project assignment then samsungStatistics2 should.__
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__If samsungStatistics1 does not fulfill requirements 2-4 of project assignment then samsungStatistics2 should.__
 ```{r}
 temp <- select(samsungDataAll, -296, -297, -298, -375, -376, -377, -454, -455, -456, -515, -528, -541, -554)
 samsungStatistics2 <- select(temp, Subject, Activity, grep("mean", colnames(temp)), grep("std", colnames(temp)))
 ```
 ##summaryTable2: summarization of samsungStatistics1 with 68 variables and 180 rows.
 #####Finally, a matched statistics data set is produced, which is comprised of 33 means and 33 standard deviations.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__if summaryTable1 does not fulfill requirement 5 of project assignment then summaryTable2 should.__
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__If summaryTable1 does not fulfill requirement 5 of project assignment then summaryTable2 should.__
 ```{r}
 df2 <-  group_by(samsungStatistics2, Subject, Activity)
 dfVariables2 <- names(df2)[-(1:2)]  
